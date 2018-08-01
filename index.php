@@ -10,18 +10,21 @@
 		<link rel="stylesheet" href="css/style.css"/>
 	</head>
 	<body>
-	<!--	<pre>
-		<?php
-			print_r($_POST);
+		<header class="site-header">
+			<?php
+				// kopfbereich
+				include "header.php";
+			?>
+		</header>
 
-			if($_POST['Kunde'] != "") {
-				echo "Hallo, " . $_POST['Kunde'] . "!";
+		<div class="site-content">
+			
 			}
 		?>
-		</pre> -->
+		</div>
 	
 		
-		<form action="index.php" method="post">
+		<footer>
 		 Logo <br/>
 			Arbeitsberichtnummer </br>
 		 Kunde: <input name="Kunde" type="text" <?php if($_POST['Kunde']) { echo 'value="'.$_POST['Kunde'].'"';} ?>/><br/> 
@@ -29,7 +32,7 @@
 		 Anlagenstandort: <input name="Anlagenstandort" type="text" <?php if($_POST['Anlagenstandort']) { echo 'value="'.$_POST['Anlagenstandort'].'"';} ?>/><br/> 
 		 Gerätebezeichnung: <input name="Geraetebezeichnung" type="text" <?php if($_POST['Geraetebezeichnung']) { echo 'value="'.$_POST['Geraetebezeichnung'].'"';} ?>/><br/> 
 		 Typ/Serien-Nr.:: <input name="Typ" type="text" <?php if($_POST['Typ']) { echo 'value="'.$_POST['Typ'].'"';} ?>/><br/> 
-		 Kältemittel: <input name="Kaeltemittel" type="text" <?php if($_POST['Kaeltemittel']) { echo 'value="'.$_POST['Kaeltemittel'].'"';} ?>/><br/> 
+			&copy; SEK Scheer & Ehrke Kälte- Klimatechnik GmbH 2018
 		
 		<label></label><input type="Checkbox" name="Serviceart[]" value="1" <?php if (in_array("1", $_POST['Serviceart'])) echo "checked='checked'"; ?>/> Service</label>
 		<label><input type="Checkbox" name="Serviceart[]" value="2" <?php if (in_array("2", $_POST['Serviceart'])) echo "checked='checked'"; ?>/> Wartung</label>
@@ -91,7 +94,7 @@
 		
 		Arbeit beendet:
 		<label><input type="radio" name="beendet" value="Ja"<?php if (isset($_POST['beendet']) && $_POST['beendet'] == 'Ja') echo "checked='checked'"; ?>/> Ja
-		<label><input type="radio" name="beendet" value="Nein" <?php if (isset($_POST['beendet']) && $_POST['beendet'] == 'Nein') echo "checked='checked'"; ?>/> Nein
+		</footer>
 		<label><input type="radio" name="beendet" value="Notdienst" <?php if (isset($_POST['beendet']) && $_POST['beendet'] == 'Notdienst') echo "checked='checked'"; ?>/> Notdienst <br/>
 		
 		Abrechnung:
