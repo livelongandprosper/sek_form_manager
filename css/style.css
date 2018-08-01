@@ -1,4 +1,7 @@
+/* Stylesheet for SEK form manager */
+* {
+	box-sizing: border-box;
+}
 body{
 	font-family: Arial;
 }
-
