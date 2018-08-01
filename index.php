@@ -78,12 +78,12 @@
 			</tr>
 		</table>
 		
-		Pauschalen:
+		Pauschalen: <br/>
 		<label><input type="Checkbox" name="Pauschalen[]" value="1" <?php if (in_array("1", $_POST['Pauschalen'])) echo "checked='checked'"; ?>/> Kleinmaterial</label>
 		<label><input type="Checkbox" name="Pauschalen[]" value="2" <?php if (in_array("2", $_POST['Pauschalen'])) echo "checked='checked'"; ?>/> Elektr. Kleinmaterial</label>
 		<label><input type="Checkbox" name="Pauschalen[]" value="3" <?php if (in_array("3", $_POST['Pauschalen'])) echo "checked='checked'"; ?>/> Befestigungsmaterial</label>
 		<label><input type="Checkbox" name="Pauschalen[]" value="4" <?php if (in_array("4", $_POST['Pauschalen'])) echo "checked='checked'"; ?>/> Isoliermaterial</label>
-		<label><input type="Checkbox" name="Pauschalen[]" value="5" <?php if (in_array("5", $_POST['Pauschalen'])) echo "checked='checked'"; ?>/> Dichtmaterial</label>
+		<label><input type="Checkbox" name="Pauschalen[]" value="5" <?php if (in_array("5", $_POST['Pauschalen'])) echo "checked='checked'"; ?>/> Dichtmaterial</label> <br/>
 		<label><input type="Checkbox" name="Pauschalen[]" value="6" <?php if (in_array("6", $_POST['Pauschalen'])) echo "checked='checked'"; ?>/> Lötmaterial</label>
 		<label><input type="Checkbox" name="Pauschalen[]" value="7" <?php if (in_array("7", $_POST['Pauschalen'])) echo "checked='checked'"; ?>/> Vakuumpumpe</label>
 		<label><input type="Checkbox" name="Pauschalen[]" value="8" <?php if (in_array("8", $_POST['Pauschalen'])) echo "checked='checked'"; ?>/> Lecksuchspray</label>
