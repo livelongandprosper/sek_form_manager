@@ -1,15 +1,31 @@
 <?php 
 session_start();
+
+// DB connection
 $db = new mysqli("localhost", "root", "root", "sek_form_manager");
+/* check connection */
+if ($db->connect_errno) {
+    printf("Connect failed: %s\n", $db->connect_error);
+    exit();
+}
 
 if(isset($_GET['login'])) {
     $email = $_POST['email'];
     $passwort = $_POST['passwort'];
     
-    $statement = $db->prepare("SELECT * FROM mitarbeiter WHERE email = :email");
-    $result = $statement->execute(array('email' => $email));
-    $mitarbeiter = $statement->fetch();
-        
+    $result = $db->query("
+    	SELECT
+    		*
+    	FROM
+    		mitarbeiter
+    	WHERE
+    		email = '".$email."'
+    ;");
+	while($row = $result->fetch_assoc()) {
+		$mitarbeiter[] = $row;
+    }        
+    print_r($mitarbeiter);
+
     //Überprüfung des Passworts
     if ($mitarbeiter !== false && password_verify($passwort, $mitarbeiter['passwort'])) {
         $_SESSION['mitarbeiterid'] = $mitarbeiter['id'];
