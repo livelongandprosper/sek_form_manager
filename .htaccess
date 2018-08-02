@@ -1,1 +1,1 @@
-php_value display_errors Off
+php_value display_errors On
