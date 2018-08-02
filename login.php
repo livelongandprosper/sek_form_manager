@@ -1,5 +1,9 @@
 <?php 
 session_start();
+//$_SESSION = array();
+
+
+
 
 // DB connection
 $db = new mysqli("localhost", "root", "root", "sek_form_manager");
@@ -28,14 +32,24 @@ if(isset($_GET['login'])) {
 		$mitarbeiter[] = $row;
     }        
     print_r($mitarbeiter);
-
+	
     //Überprüfung des Passworts
     if (sizeof($mitarbeiter)==1 ) {
         $_SESSION['mitarbeiterid'] = $mitarbeiter[0]['mitarbeiterid'];
-        die('Login erfolgreich. Weiter zu <a href="geheim.php">internen Bereich</a>');
+        $_SESSION["login"]=1;
+		'Login erfolgreich. Weiter zu internen Bereich';
+		header("Location:index.php");
+		
+		
+		
     } else {
         $errorMessage = "E-Mail oder Passwort war ungültig<br>";
+		
     }
+	if(isset($errorMessage)) {
+    echo $errorMessage;
+	
+}
     
 }
 ?>
@@ -46,11 +60,7 @@ if(isset($_GET['login'])) {
 </head> 
 <body>
  
-<?php 
-if(isset($errorMessage)) {
-    echo $errorMessage;
-}
-?>
+
  
 <form action="?login=1" method="post">
 E-Mail:<br>

@@ -1,6 +1,6 @@
 <?php
 session_start();
-session_destroy();
- 
+$_SESSION = array();
+Header("Location:index.php");
 echo "Logout erfolgreich";
 ?>

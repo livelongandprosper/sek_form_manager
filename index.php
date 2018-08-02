@@ -14,9 +14,20 @@
 			<?php
 				// kopfbereich
 				include "header.php";
+				session_start();
 			?>
 		</header>
-
+		
+		<div>
+			<?php
+				//Login-Kontrolle
+				if ($_SESSION["login"] != 1 ){
+				Header("Location:login.php");	
+				}	
+			?>
+		
+		</div>
+		
 		<div class="site-content">
 			<form action="index.php" method="post">
 				Logo <br/>
