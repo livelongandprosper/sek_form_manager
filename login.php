@@ -12,6 +12,7 @@ if ($db->connect_errno) {
 if(isset($_GET['login'])) {
     $email = $_POST['email'];
     $passwort = $_POST['passwort'];
+	$mitarbeiter=array();
     
     $result = $db->query("
     	SELECT
@@ -20,6 +21,8 @@ if(isset($_GET['login'])) {
     		mitarbeiter
     	WHERE
     		email = '".$email."'
+			and 
+			passwort = md5('$passwort')
     ;");
 	while($row = $result->fetch_assoc()) {
 		$mitarbeiter[] = $row;
@@ -27,8 +30,8 @@ if(isset($_GET['login'])) {
     print_r($mitarbeiter);
 
     //Überprüfung des Passworts
-    if ($mitarbeiter !== false && password_verify($passwort, $mitarbeiter['passwort'])) {
-        $_SESSION['mitarbeiterid'] = $mitarbeiter['id'];
+    if (sizeof($mitarbeiter)==1 ) {
+        $_SESSION['mitarbeiterid'] = $mitarbeiter[0]['mitarbeiterid'];
         die('Login erfolgreich. Weiter zu <a href="geheim.php">internen Bereich</a>');
     } else {
         $errorMessage = "E-Mail oder Passwort war ungültig<br>";
