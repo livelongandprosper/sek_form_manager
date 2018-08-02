@@ -36,8 +36,8 @@
 				<label><input type="Checkbox" name="Serviceart[]" value="5" <?php if (in_array("5", $_POST['Serviceart'])) echo "checked='checked'"; ?>/> Tiefkühlung</label>
 				<label><input type="Checkbox" name="Serviceart[]" value="6" <?php if (in_array("6", $_POST['Serviceart'])) echo "checked='checked'"; ?>/> Klimaanlage </label><br/>
 				
-				<table border="1">
-					<tr>
+				<table >
+					<tr class="tk">
 						<td>Datum</td>
 						<td>Monteur</td>
 						<td>Arbeitsbeginn</td>
@@ -101,6 +101,7 @@
 				Unterschrift Monteur
 				Stempel + Unterschrift Kunde/Betreiber
 				
+				<br/>
 				<button>Senden</button>
 			</form>
 		</div>
@@ -108,6 +109,8 @@
 		<footer>
 			&copy; SEK Scheer & Ehrke Kälte- Klimatechnik GmbH 2018
 		</footer>
+	
+	
 	</body>
 </html>
 
