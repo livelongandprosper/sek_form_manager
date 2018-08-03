@@ -8,8 +8,17 @@
 		<meta name="viewport" content="width=device-width">
 		
 		<link rel="stylesheet" href="css/style.css"/>
+		
+		
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+		</script>
+		<script src="js/scripts.js"></script>
+
 	</head>
 	<body>
+		<pre>
+		<?php print_r($_POST); ?>
+		</pre>
 		<header class="site-header">
 			<?php
 				// kopfbereich
@@ -32,14 +41,14 @@
 			<form action="index.php" method="post">
 				Logo <br/>
 				Arbeitsberichtnummer </br>
-	
+				<div class="breiterinput">
 				 Kunde: <input name="Kunde" type="text" <?php if($_POST['Kunde']) { echo 'value="'.$_POST['Kunde'].'"';} ?>/><br/> 
 				 Auftrag: <input name="Auftrag" type="text" <?php if($_POST['Auftrag']) { echo 'value="'.$_POST['Auftrag'].'"';} ?>/><br/> 
 				 Anlagenstandort: <input name="Anlagenstandort" type="text" <?php if($_POST['Anlagenstandort']) { echo 'value="'.$_POST['Anlagenstandort'].'"';} ?>/><br/> 
 				 Gerätebezeichnung: <input name="Geraetebezeichnung" type="text" <?php if($_POST['Geraetebezeichnung']) { echo 'value="'.$_POST['Geraetebezeichnung'].'"';} ?>/><br/> 
 				 Typ/Serien-Nr.:: <input name="Typ" type="text" <?php if($_POST['Typ']) { echo 'value="'.$_POST['Typ'].'"';} ?>/><br/> 
 				 Kältemittel: <input name="Kaeltemittel" type="text" <?php if($_POST['Kaeltemittel']) { echo 'value="'.$_POST['Kaeltemittel'].'"';} ?>/><br/> 
-				
+				</div>
 				<label><input type="Checkbox" name="Serviceart[]" value="1" <?php if (in_array("1", $_POST['Serviceart'])) echo "checked='checked'"; ?>/> Service</label>
 				<label><input type="Checkbox" name="Serviceart[]" value="2" <?php if (in_array("2", $_POST['Serviceart'])) echo "checked='checked'"; ?>/> Wartung</label>
 				<label><input type="Checkbox" name="Serviceart[]" value="3" <?php if (in_array("3", $_POST['Serviceart'])) echo "checked='checked'"; ?>/> Montage</label>
@@ -47,7 +56,7 @@
 				<label><input type="Checkbox" name="Serviceart[]" value="5" <?php if (in_array("5", $_POST['Serviceart'])) echo "checked='checked'"; ?>/> Tiefkühlung</label>
 				<label><input type="Checkbox" name="Serviceart[]" value="6" <?php if (in_array("6", $_POST['Serviceart'])) echo "checked='checked'"; ?>/> Klimaanlage </label><br/>
 				
-				<table >
+				<table class="zeilehinzu">
 					<tr class="tk">
 						<td>Datum</td>
 						<td>Monteur</td>
@@ -56,15 +65,37 @@
 						<td>Strecke in Km</td>
 						<td>Fahrzeit</td>
 					</tr>
-					<tr>
-						<td> <input name="Datum" type="date" <?php if($_POST['Datum']) { echo 'value="'.$_POST['Datum'].'"';} ?>/></td>
-						<td> <input name="Monteur" type="text" <?php if($_POST['Monteur']) { echo 'value="'.$_POST['Monteur'].'"';} ?>/></td>
-						<td> <input name="Arbeitsbeginn" type="time" <?php if($_POST['Arbeitsbeginn']) { echo 'value="'.$_POST['Arbeitsbeginn'].'"';} ?>/></td>
-						<td> <input name="Arbeitsende" type="time"<?php if($_POST['Arbeitsende']) { echo 'value="'.$_POST['Arbeitsende'].'"';} ?>/></td>
-						<td> <input name="Strecke" type="text" <?php if($_POST['Strecke']) { echo 'value="'.$_POST['Strecke'].'"';} ?>/></td>
-						<td> <input name="Fahrzeit" type="time" <?php if($_POST['Fahrzeit']) { echo 'value="'.$_POST['Fahrzeit'].'"';} ?>/></td>
-					</tr>
+					<?php
+						if($_POST['arbeitszeit']) {
+							foreach($_POST['arbeitszeit'] as $arbeitszeit_k => $arbeitszeit) {
+							?>
+								<tr>
+									<td> <input name="arbeitszeit[<?php echo $arbeitszeit_k;?>][Datum]" type="date" <?php if($_POST['arbeitszeit'][$arbeitszeit_k]['Datum']) { echo 'value="'.$_POST['arbeitszeit'][$arbeitszeit_k]['Datum'].'"';} ?>/></td>
+									<td> <input name="arbeitszeit[<?php echo $arbeitszeit_k;?>][Monteur]" type="text" <?php if($_POST['arbeitszeit'][ $arbeitszeit_k]['Monteur']) { echo 'value="'.$_POST['arbeitszeit'][ $arbeitszeit_k]['Monteur'].'"';} ?>/></td>
+									<td> <input name="arbeitszeit[<?php echo $arbeitszeit_k;?>][Arbeitsbeginn]" type="time" <?php if($_POST['arbeitszeit'][ $arbeitszeit_k]['Arbeitsbeginn']) { echo 'value="'.$_POST['arbeitszeit'][ $arbeitszeit_k]['Arbeitsbeginn'].'"';} ?>/></td>
+									<td> <input name="arbeitszeit[<?php echo $arbeitszeit_k;?>][Arbeitsende]" type="time"<?php if($_POST['arbeitszeit'][ $arbeitszeit_k]['Arbeitsende']) { echo 'value="'.$_POST['arbeitszeit'][ $arbeitszeit_k]['Arbeitsende'].'"';} ?>/></td>
+									<td> <input name="arbeitszeit[<?php echo $arbeitszeit_k;?>][Strecke]" type="text" <?php if($_POST['arbeitszeit'][$arbeitszeit_k]['Strecke']) { echo 'value="'.$_POST['arbeitszeit'][$arbeitszeit_k]['Strecke'].'"';} ?>/></td>
+									<td> <input name="arbeitszeit[<?php echo $arbeitszeit_k;?>][Fahrzeit]" type="time" <?php if($_POST['arbeitszeit'][$arbeitszeit_k]['Fahrzeit']) { echo 'value="'.$_POST['arbeitszeit'][$arbeitszeit_k]['Fahrzeit'].'"';} ?>/></td>
+								</tr>
+							<?php
+							}
+						} else {
+						?>
+							<tr>
+								<td> <input name="arbeitszeit[0][Datum]" type="date" /></td>
+								<td> <input name="arbeitszeit[0][Monteur]" type="text" /></td>
+								<td> <input name="arbeitszeit[0][Arbeitsbeginn]" type="time" /></td>
+								<td> <input name="arbeitszeit[0][Arbeitsende]" type="time"/></td>
+								<td> <input name="arbeitszeit[0][Strecke]" type="text" /></td>
+								<td> <input name="arbeitszeit[0][Fahrzeit]" type="time" /></td>
+							</tr>
+							
+						
+						<?php
+						}
+					?>
 				</table> <br/>
+			<button class="hinzubutton">+</button> <br/>
 				
 				Normalstunden 07:00-18:00 / Überstunden 25% 18:00-22:00 / Überstunden 50% 22:00-07:00 / Samstag 50% / Sonntag 100% / Feiertage 150%<br/>
 				
@@ -75,16 +106,39 @@
 		         echo htmlentities ($_POST["Arbeiten"]); }?></textarea> 
 				
 				
-				<table>
-					<tr>
-						<td>Materialbezeichnung</td>
-						<td>Menge</td>
-					</tr>
-					<tr>
-						<td><input name="Material" type="text" <?php if($_POST['Material']) { echo 'value="'.$_POST['Material'].'"';} ?>/> </td>
-						<td><input name="Menge" type="Number" <?php if($_POST['Menge']) { echo 'value="'.$_POST['Menge'].'"';} ?>/></td>
-					</tr>
-				</table>
+				
+				<table class="materialzeilehinzu">
+				<tr>
+					<td >Materialbezeichnung</td>
+					<td>Menge</td> </br>
+				</tr>
+				<?php
+						if($_POST['material']) {
+							foreach($_POST['material'] as $material_k => $material) {
+							?>
+								<tr>
+									<td> <input name="material[<?php echo $material_k;?>][Materialbezeichnung]" type="date" <?php if($_POST['material'][$material_k]['Materialbezeichnung']) { echo 'value="'.$_POST['material'][$material_k]['Materialbezeichnung'].'"';} ?>/></td>
+									<td> <input name="material[<?php echo $material_k;?>][Menge]" type="date" <?php if($_POST['material'][$material_k]['Menge']) { echo 'value="'.$_POST['material'][$material_k]['Menge'].'"';} ?>/></td>
+									
+								</tr>
+							<?php
+							}
+						} else {
+						?>
+						
+						<tr>
+							<td><input class="mittlererinput" name="material[0][materialbezeichnung]" type="text" <?php if($_POST['material[0][materialbezeichnung]']) { echo 'value="'.$_POST['material[0][materialbezeichnung]'].'"';} ?>/> </td>
+							<td><input name="material[0][Menge]" type="Number" <?php if($_POST['material[0][Menge]']) { echo 'value="'.$_POST['material[0][Menge]'].'"';} ?>/></td>
+						</tr>
+							
+						
+						<?php
+						}
+					?>
+				</table> <br/>
+				
+				<button class="knopf">+</button>
+				</br>
 				
 				Pauschalen: <br/>
 				<label><input type="Checkbox" name="Pauschalen[]" value="1" <?php if (in_array("1", $_POST['Pauschalen'])) echo "checked='checked'"; ?>/> Kleinmaterial</label>
@@ -113,7 +167,7 @@
 				Stempel + Unterschrift Kunde/Betreiber
 				
 				<br/>
-				<button>Senden</button>
+				<button class="hsb">Senden</button>
 			</form>
 		</div>
 		
