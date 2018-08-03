@@ -1,12 +1,13 @@
 <?php 
 session_start();
+require_once "config.inc.php";
 //$_SESSION = array();
 
 
 
 
 // DB connection
-$db = new mysqli("localhost", "root", "root", "sek_form_manager");
+$db = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
 /* check connection */
 if ($db->connect_errno) {
     printf("Connect failed: %s\n", $db->connect_error);
