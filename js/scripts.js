@@ -23,7 +23,7 @@ $(document).ready(function(){
 		
         
 		
-	$(".knopf").click(function(){
+	$(".knopfmaterialhinzu").click(function(){
 			event.preventDefault();
 			var anzahl=$('.materialzeilehinzu tr').length-2;
 			var $mr=$('.materialzeilehinzu tr:last').clone();

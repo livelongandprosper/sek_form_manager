@@ -10,7 +10,7 @@
 		define("DB_USER", "root");
 	}
 	if(!defined("DB_PASSWORD")) {
-		define("DB_PASSWORD", "");
+		define("DB_PASSWORD", "root");
 	}
 
 ?>
