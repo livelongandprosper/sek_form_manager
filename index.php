@@ -24,11 +24,25 @@
 			<?php
 				// kopfbereich
 				include "header.php";
-			include "arbeitsbericht";
+			    include "arbeitsbericht.php";
 				session_start();
 			?>
 			
 		</header>
+		<nav class="menue">
+	<div >
+	<ul >
+		<li><a href="?form=arbeitsbericht">Meine eingereichten Formulare</a></li>
+		<li><a href="arbeitsbericht.php">Neuer Arbeitsbericht test</a></li>
+	</ul>
+	
+	<ul >
+		<li><a href="login.php">Login</a>  </li>
+		<li><a href="registrieren.php">Registrieren</a>  </li>
+		<li><a href="logout.php">Logout</a></li>
+	</ul>
+	</div>
+</nav>
 		
 		<div>
 			<?php
